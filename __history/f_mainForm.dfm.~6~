@@ -1,0 +1,176 @@
+object mainForm: TmainForm
+  AlignWithMargins = True
+  Left = 0
+  Top = 0
+  Caption = 'mainForm'
+  ClientHeight = 542
+  ClientWidth = 869
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  WindowState = wsMinimized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object cxPageControl1: TcxPageControl
+    Left = 0
+    Top = 28
+    Width = 869
+    Height = 514
+    Align = alClient
+    TabOrder = 0
+    Properties.ActivePage = beforeLogin
+    Properties.CustomButtons.Buttons = <>
+    ExplicitTop = 34
+    ExplicitHeight = 381
+    ClientRectBottom = 510
+    ClientRectLeft = 4
+    ClientRectRight = 865
+    ClientRectTop = 4
+    object beforeLogin: TcxTabSheet
+      Caption = 'beforeLogin'
+      ImageIndex = 0
+      TabVisible = False
+      ExplicitLeft = -20
+      ExplicitTop = -28
+      ExplicitHeight = 353
+      object StaticText4: TStaticText
+        Left = 32
+        Top = 27
+        Width = 249
+        Height = 23
+        Caption = 'APLIKASI PENERIMAAN MAGANG'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+      end
+      object StaticText5: TStaticText
+        Left = 32
+        Top = 47
+        Width = 129
+        Height = 20
+        Caption = 'BBPPMPV BOE Malang'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+      end
+    end
+    object afterLogin: TcxTabSheet
+      Caption = 'afterLogin'
+      ImageIndex = 1
+      TabVisible = False
+      ExplicitLeft = -212
+      ExplicitTop = 64
+      ExplicitHeight = 353
+      object StaticText1: TStaticText
+        Left = 32
+        Top = 67
+        Width = 249
+        Height = 23
+        Caption = 'APLIKASI PENERIMAAN MAGANG'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+      end
+      object StaticText2: TStaticText
+        Left = 32
+        Top = 87
+        Width = 129
+        Height = 20
+        Caption = 'BBPPMPV BOE Malang'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 1
+      end
+      object StaticText3: TStaticText
+        Left = 32
+        Top = 24
+        Width = 179
+        Height = 29
+        Caption = 'SELAMAT DATANG'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -21
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+      end
+    end
+  end
+  object dxRibbon1: TdxRibbon
+    Left = 0
+    Top = 0
+    Width = 869
+    Height = 28
+    ColorSchemeName = 'Blue'
+    Fonts.ApplicationButton.Charset = DEFAULT_CHARSET
+    Fonts.ApplicationButton.Color = clWindowText
+    Fonts.ApplicationButton.Height = -13
+    Fonts.ApplicationButton.Name = 'Tahoma'
+    Fonts.ApplicationButton.Style = []
+    Fonts.AssignedFonts = [afTabHeader, afGroup, afGroupHeader, afApplicationButton]
+    Fonts.Group.Charset = DEFAULT_CHARSET
+    Fonts.Group.Color = 9126421
+    Fonts.Group.Height = -13
+    Fonts.Group.Name = 'Tahoma'
+    Fonts.Group.Style = []
+    Fonts.GroupHeader.Charset = DEFAULT_CHARSET
+    Fonts.GroupHeader.Color = 11168318
+    Fonts.GroupHeader.Height = -13
+    Fonts.GroupHeader.Name = 'Tahoma'
+    Fonts.GroupHeader.Style = []
+    Fonts.TabHeader.Charset = DEFAULT_CHARSET
+    Fonts.TabHeader.Color = clWindowText
+    Fonts.TabHeader.Height = -13
+    Fonts.TabHeader.Name = 'Tahoma'
+    Fonts.TabHeader.Style = []
+    Contexts = <
+      item
+      end
+      item
+      end>
+    TabOrder = 1
+    TabStop = False
+    object dxRibbon1Tab1: TdxRibbonTab
+      Caption = 'dxRibbon1Tab1'
+      Groups = <
+        item
+          Caption = 'Login'
+          MergeKind = rmkAdd
+        end
+        item
+          Caption = 'Seond'
+          MergeKind = rmkAdd
+          MergeOrder = 1
+        end>
+      Index = 0
+    end
+    object dxRibbon1Tab2: TdxRibbonTab
+      Active = True
+      Caption = 'dxRibbon1Tab2'
+      Groups = <>
+      Index = 1
+    end
+  end
+end
