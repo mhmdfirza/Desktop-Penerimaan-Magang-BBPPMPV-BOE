@@ -3,7 +3,7 @@ unit SharedFunctions;
 interface
 
 uses windows, SysUtils, Classes, Forms, DateUtils, Math, System.RegularExpressions,
-     inifiles, StrUtils, cxGridDBTableView, MemDS;
+     inifiles, StrUtils, cxGridDBTableView, MemDS, Vcl.Controls;
 
 const
 CKEY1 = 53761;
@@ -13,6 +13,10 @@ procedure SetCustomFormatSettings;
 
 function IsFormOpen(const FormName : string): Boolean;
 function IsMDIChildOpen(const AFormName: TForm; const AMDIChildName : string): Boolean;
+
+function IsFrameOpen(AParent: TWinControl; const FrameClass: TClass): Boolean;
+
+procedure SetRoundedBorder(AControl: TWinControl; Radius: Integer);
 
 function FindFile2(FileName :string) : boolean;
 function DeleteLocalFile(NamaFile : string) : boolean;
@@ -33,7 +37,7 @@ function myReplaceChar_String(Dest, Str: string; SubStr : char): string;
 function FileSizeByName(const FileName: string): Int64;
 function IsFileEksis(namaFolder, namaFile : string) : boolean;
 
-// mengganti karakter en dash (–) dengan tanda hubung (-):
+// mengganti karakter en dash (â€“) dengan tanda hubung (-):
 function ReplaceEnDashWithHyphen(InputString : string) : string;
 
 function HapusEnter(sumber: string): string;
@@ -76,6 +80,37 @@ function IsSelectedRow(View : TcxGridDBTableView; CheckBoxColName : TcxGridDBCol
 procedure SelectAll(View : TcxGridDBTableView; CheckBoxColName : TcxGridDBColumn; nilai: boolean);
 
 implementation
+
+procedure SetRoundedBorder(AControl: TWinControl; Radius: Integer);
+var
+  R: TRect;
+  Rgn: HRGN;
+begin
+  if not Assigned(AControl) then
+    Exit;
+
+  // Ambil ukuran area kontrol
+  R := AControl.ClientRect;
+
+  // Buat sudut melengkung dengan radius tertentu
+  Rgn := CreateRoundRectRgn(R.Left, R.Top, R.Right, R.Bottom, Radius, Radius);
+
+  // Terapkan ke kontrol
+  SetWindowRgn(AControl.Handle, Rgn, True);
+end;
+
+function IsFrameOpen(AParent: TWinControl; const FrameClass: TClass): Boolean;
+var
+  i: Integer;
+begin
+  Result := False;
+  for i := 0 to AParent.ControlCount - 1 do
+    if AParent.Controls[i] is FrameClass then
+    begin
+      Result := True;
+      Break;
+    end;
+end;
 
 
 function IsFileEksis(namaFolder, namaFile: string): boolean;
@@ -847,7 +882,7 @@ function ReplaceEnDashWithHyphen(InputString : string) : string;
 begin
   // En dash memiliki kode Unicode #$2013
   // Tanda hubung biasa memiliki kode ASCII #$2D
-  Result := StringReplace(InputString, '–', '-', [rfReplaceAll]);
+  Result := StringReplace(InputString, 'â€“', '-', [rfReplaceAll]);
 end;
 
 
