@@ -1,4 +1,4 @@
-﻿unit U_Admin;
+﻿unit U_Pembimbing;
 
 interface
 
@@ -22,30 +22,26 @@ uses
   dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, cxLabel, Vcl.StdCtrls, Vcl.Menus, cxButtons, Vcl.Buttons,
-  cxImage, frameAdmin_Dashboard, frameAdmin_DataPenerimaanPeserta, frameAdmin_DataPesertaPkl,
-  frameAdmin_DataPembimbing, SharedFunctions;
+  cxImage, framePembimbing_Dashboard, framePembimbing_DataPesertaDidik,
+  SharedFunctions;
 
 type
-  TformAdmin = class(TForm)
+  TformPembimbing = class(TForm)
     panelSidebar: TPanel;
     labelSistemPkl: TcxLabel;
     PanelContent: TPanel;
     btnDashboard: TcxButton;
-    btnPenerimaanPeserta: TcxButton;
+    btnManagePesertaDidik: TcxButton;
     btnLogout: TSpeedButton;
     panelMenu: TPanel;
     panelUser: TPanel;
     imgUser: TcxImage;
     labelNama: TcxLabel;
     panelWrapper: TPanel;
-    btnDataPeserta: TcxButton;
-    btnDataPemimbing: TcxButton;
     procedure panelSidebarResize(Sender: TObject);
     procedure panelSidebarEnter(Sender: TObject);
-    procedure btnDataPesertaClick(Sender: TObject);
     procedure btnDashboardClick(Sender: TObject);
-    procedure btnPenerimaanPesertaClick(Sender: TObject);
-    procedure btnDataPembimbingClick(Sender: TObject);
+    procedure btnManagePesertaDidikClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,96 +49,57 @@ type
   end;
 
 var
-  formAdmin: TformAdmin;
+  formPembimbing: TformPembimbing;
 
 implementation
 
 {$R *.dfm}
 
 
-procedure TformAdmin.btnDashboardClick(Sender: TObject);
+procedure TformPembimbing.btnDashboardClick(Sender: TObject);
 var
   i: Integer;
-  FrameDashboard: TFrameAdminDashboard;
+  FrameDashboard: TFramePembimbingDashboard;
 begin
 
 // Hapus frame lain agar panel kosong dulu
   for i := PanelContent.ControlCount - 1 downto 0 do
     PanelContent.Controls[i].Free;
 
-  if not IsFrameOpen(PanelContent, TFrameAdminDashboard) then
+  if not IsFrameOpen(PanelContent, TFramePembimbingDashboard) then
   begin
-    FrameDashboard := TFrameAdminDashboard.Create(Self); // ← buat instance
+    FrameDashboard := TFramePembimbingDashboard.Create(Self); // ← buat instance
     FrameDashboard.Parent := PanelContent;               // ← tempel di panel
     FrameDashboard.Align := alClient;                  // ← penuhi seluruh panel
   end;
 end;
 
 
-procedure TformAdmin.btnPenerimaanPesertaClick(Sender: TObject);
+procedure TformPembimbing.btnManagePesertaDidikClick(Sender: TObject);
 var
   i: Integer;
-  FrameDataPenerimaanPeserta: TFrameAdminDataPenerimaanPeserta;
+  FrameDataPesertaDidik: TFramePembimbingDataPesertaDidik;
 begin
 
 // Hapus frame lain agar panel kosong dulu
   for i := PanelContent.ControlCount - 1 downto 0 do
     PanelContent.Controls[i].Free;
 
-  if not IsFrameOpen(PanelContent, TFrameAdminDataPenerimaanPeserta) then
+  if not IsFrameOpen(PanelContent, TFramePembimbingDataPesertaDidik) then
   begin
-    FrameDataPenerimaanPeserta := TFrameAdminDataPenerimaanPeserta.Create(Self); // ← buat instance
-    FrameDataPenerimaanPeserta.Parent := PanelContent;               // ← tempel di panel
-    FrameDataPenerimaanPeserta.Align := alClient;                  // ← penuhi seluruh panel
+    FrameDataPesertaDidik := TFramePembimbingDataPesertaDidik.Create(Self); // ← buat instance
+    FrameDataPesertaDidik.Parent := PanelContent;               // ← tempel di panel
+    FrameDataPesertaDidik.Align := alClient;                  // ← penuhi seluruh panel
   end;
 end;
 
-
-procedure TformAdmin.btnDataPesertaClick(Sender: TObject);
-var
-  i: Integer;
-  FrameDataPesertaPkl: TFrameAdminDataPesertaPkl;
-begin
-
-// Hapus frame lain agar panel kosong dulu
-  for i := PanelContent.ControlCount - 1 downto 0 do
-    PanelContent.Controls[i].Free;
-
-  if not IsFrameOpen(PanelContent, TFrameAdminDataPesertaPkl) then
-  begin
-    FrameDataPesertaPkl := TFrameAdminDataPesertaPkl.Create(Self); // ← buat instance
-    FrameDataPesertaPkl.Parent := PanelContent;               // ← tempel di panel
-    FrameDataPesertaPkl.Align := alClient;                  // ← penuhi seluruh panel
-  end;
-end;
-
-
-procedure TformAdmin.btnDataPembimbingClick(Sender: TObject);
-var
-  i: Integer;
-  FrameDataPembimbing: TFrameAdminDataPembimbing;
-begin
-
-// Hapus frame lain agar panel kosong dulu
-  for i := PanelContent.ControlCount - 1 downto 0 do
-    PanelContent.Controls[i].Free;
-
-  if not IsFrameOpen(PanelContent, TFrameAdminDataPembimbing) then
-  begin
-    FrameDataPembimbing := TFrameAdminDataPembimbing.Create(Self); // ← buat instance
-    FrameDataPembimbing.Parent := PanelContent;               // ← tempel di panel
-    FrameDataPembimbing.Align := alClient;                  // ← penuhi seluruh panel
-  end;
-end;
-
-
-procedure TformAdmin.panelSidebarEnter(Sender: TObject);
+procedure TformPembimbing.panelSidebarEnter(Sender: TObject);
 begin
   SetRoundedBorder(panelSidebar, 25);
 end;
 
 
-procedure TformAdmin.panelSidebarResize(Sender: TObject);
+procedure TformPembimbing.panelSidebarResize(Sender: TObject);
 begin
   SetRoundedBorder(panelSidebar, 25);
 end;

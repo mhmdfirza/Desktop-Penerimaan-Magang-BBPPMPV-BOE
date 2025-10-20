@@ -1,4 +1,4 @@
-object formAdmin: TformAdmin
+object formPembimbing: TformPembimbing
   Left = 0
   Top = 0
   Caption = '+-'
@@ -73,13 +73,13 @@ object formAdmin: TformAdmin
           AnchorX = 119
           AnchorY = 42
         end
-        object btnPenerimaanPeserta: TcxButton
+        object btnManagePesertaDidik: TcxButton
           Left = 16
           Top = 136
           Width = 200
           Height = 40
           BiDiMode = bdLeftToRight
-          Caption = 'Penerimaan Peserta'
+          Caption = 'Manage Peserta Didik'
           OptionsImage.Glyph.SourceDPI = 96
           OptionsImage.Glyph.Data = {
             89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
@@ -104,7 +104,7 @@ object formAdmin: TformAdmin
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
-          OnClick = btnPenerimaanPesertaClick
+          OnClick = btnManagePesertaDidikClick
         end
         object btnDashboard: TcxButton
           Left = 17
@@ -129,72 +129,6 @@ object formAdmin: TformAdmin
           Font.Style = [fsBold]
           ParentFont = False
           OnClick = btnDashboardClick
-        end
-        object btnDataPeserta: TcxButton
-          Left = 16
-          Top = 192
-          Width = 200
-          Height = 40
-          BiDiMode = bdLeftToRight
-          Caption = 'Data Peserta'
-          OptionsImage.Glyph.SourceDPI = 96
-          OptionsImage.Glyph.Data = {
-            89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
-            610000001974455874536F6674776172650041646F626520496D616765526561
-            647971C9653C00000047744558745469746C6500437573746F6D65723B456D70
-            6C6F7965653B4669783B5075626C69633B53657474696E67733B4F7074696F6E
-            733B437573746F6D697A3B47726F75703B5465616D690B1388000000E5494441
-            54785EA5D23D6A02511885E13B8E689926FDACC0620269DD815ADAB981692CE4
-            DA0699DE05A4B0135C816E21296611213B101241F478064EF1297C3230C5C385
-            53BCF31B00B4D23E5096A527A14F3ACA863A148CA78157FA2218EF7EC0BFE285
-            205337A03A2C6DDF665BBA01D56169DB52457D0A6E407558A3D521484A399D74
-            A6DAEF022FF44790A302A048055D7546C25D40160499E94A91CE04E34CF131D0
-            A5010D25D1ED16045A53A613DAF3A097F3413FF44B13E9E999AF0A64DCE68A40
-            FBA90EEC0862F5C7ABFD5B933BF8770255837790D60157A3AF00C0A38098FFC0
-            EE37D97020F62BA09B4A0000000049454E44AE426082}
-          OptionsImage.Spacing = 8
-          ParentBiDiMode = False
-          TabOrder = 3
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnDataPesertaClick
-        end
-        object btnDataPemimbing: TcxButton
-          Left = 16
-          Top = 248
-          Width = 200
-          Height = 40
-          BiDiMode = bdLeftToRight
-          Caption = 'Data Pembimbing'
-          OptionsImage.Glyph.SourceDPI = 96
-          OptionsImage.Glyph.Data = {
-            89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
-            610000001974455874536F6674776172650041646F626520496D616765526561
-            647971C9653C00000047744558745469746C6500437573746F6D65723B456D70
-            6C6F7965653B4669783B5075626C69633B53657474696E67733B4F7074696F6E
-            733B437573746F6D697A3B47726F75703B5465616D690B1388000000E5494441
-            54785EA5D23D6A02511885E13B8E689926FDACC0620269DD815ADAB981692CE4
-            DA0699DE05A4B0135C816E21296611213B101241F478064EF1297C3230C5C385
-            53BCF31B00B4D23E5096A527A14F3ACA863A148CA78157FA2218EF7EC0BFE285
-            205337A03A2C6DDF665BBA01D56169DB52457D0A6E407558A3D521484A399D74
-            A6DAEF022FF44790A302A048055D7546C25D40160499E94A91CE04E34CF131D0
-            A5010D25D1ED16045A53A613DAF3A097F3413FF44B13E9E999AF0A64DCE68A40
-            FBA90EEC0862F5C7ABFD5B933BF8770255837790D60157A3AF00C0A38098FFC0
-            EE37D97020F62BA09B4A0000000049454E44AE426082}
-          OptionsImage.Spacing = 8
-          ParentBiDiMode = False
-          TabOrder = 4
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          OnClick = btnDataPembimbingClick
         end
       end
       object panelUser: TPanel
