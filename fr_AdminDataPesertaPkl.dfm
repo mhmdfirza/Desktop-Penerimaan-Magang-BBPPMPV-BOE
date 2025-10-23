@@ -248,11 +248,12 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
         end
       end
     end
-    object lookUpCmbxDepartemen: TcxLookupComboBox
-      Left = 37
+    object cxExtLookupComboBox1: TcxExtLookupComboBox
+      Left = 47
       Top = 62
-      Properties.ListColumns = <>
-      EditValue = 0
+      Properties.View = formRef.v_refDepartemen
+      Properties.KeyFieldNames = 'id_departemen'
+      Properties.ListFieldItem = formRef.v_refDepartemennama_departemen
       TabOrder = 4
       Width = 145
     end
@@ -273,15 +274,115 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
       Height = 321
       Align = alClient
       TabOrder = 0
-      object cxGrid1DBTableView1: TcxGridDBTableView
+      object v_DataPesertaPkl: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = DataModule1.d_siswa
         DataController.Summary.DefaultGroupSummaryItems = <>
-        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <
+          item
+            Format = 'Jml Siswa = ,0.'
+            Kind = skCount
+            Column = v_DataPesertaPklnama
+          end>
         DataController.Summary.SummaryGroups = <>
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.ColumnAutoWidth = True
+        OptionsView.Footer = True
+        OptionsView.Indicator = True
+        object v_DataPesertaPklnisn: TcxGridDBColumn
+          Caption = 'NISN'
+          DataBinding.FieldName = 'nisn'
+          PropertiesClassName = 'TcxTextEditProperties'
+          Properties.Alignment.Horz = taCenter
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Styles.Content = stl_myBold
+          Width = 83
+        end
+        object v_DataPesertaPklnama: TcxGridDBColumn
+          Caption = 'Nama Siswa'
+          DataBinding.FieldName = 'nama'
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Width = 151
+        end
+        object v_DataPesertaPkltempat_lahir: TcxGridDBColumn
+          Caption = 'Tempat Lahir'
+          DataBinding.FieldName = 'tempat_lahir'
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Width = 103
+        end
+        object v_DataPesertaPkltanggal_lahir: TcxGridDBColumn
+          Caption = 'Tgl Lahir'
+          DataBinding.FieldName = 'tanggal_lahir'
+          PropertiesClassName = 'TcxDateEditProperties'
+          Properties.Alignment.Horz = taCenter
+          Properties.DisplayFormat = 'dd/mm/yyyy'
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Width = 74
+        end
+        object v_DataPesertaPklkelas: TcxGridDBColumn
+          Caption = 'Kelas'
+          DataBinding.FieldName = 'kelas'
+          PropertiesClassName = 'TcxTextEditProperties'
+          Properties.Alignment.Horz = taCenter
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Width = 61
+        end
+        object v_DataPesertaPklnama_sekolah: TcxGridDBColumn
+          Caption = 'Sekolah'
+          DataBinding.FieldName = 'nama_sekolah'
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Width = 148
+        end
+        object v_DataPesertaPklagama: TcxGridDBColumn
+          Caption = 'Agama'
+          DataBinding.FieldName = 'agama'
+          HeaderAlignmentHorz = taCenter
+          Width = 34
+        end
+        object v_DataPesertaPklalamat_rumah: TcxGridDBColumn
+          Caption = 'Alamat Rumah'
+          DataBinding.FieldName = 'alamat_rumah'
+          HeaderAlignmentHorz = taCenter
+          Width = 33
+        end
+        object v_DataPesertaPklno_hp: TcxGridDBColumn
+          Caption = 'No Hp'
+          DataBinding.FieldName = 'no_hp'
+          HeaderAlignmentHorz = taCenter
+          Width = 38
+        end
+        object v_DataPesertaPklstatus: TcxGridDBColumn
+          Caption = 'Status'
+          DataBinding.FieldName = 'status'
+          PropertiesClassName = 'TcxTextEditProperties'
+          Properties.Alignment.Horz = taCenter
+          HeaderAlignmentHorz = taCenter
+          Width = 34
+        end
       end
       object cxGrid1Level1: TcxGridLevel
-        GridView = cxGrid1DBTableView1
+        GridView = v_DataPesertaPkl
       end
+    end
+  end
+  object cxStyleRepository1: TcxStyleRepository
+    Left = 8
+    Top = 8
+    PixelsPerInch = 96
+    object stl_myBold: TcxStyle
+      AssignedValues = [svFont]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlue
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
     end
   end
 end

@@ -20,6 +20,8 @@ object FrameAdminDataPenerimaanPeserta: TFrameAdminDataPenerimaanPeserta
     Anchors = []
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 1
+    ExplicitTop = -5
     DesignSize = (
       792
       225)
@@ -263,7 +265,6 @@ object FrameAdminDataPenerimaanPeserta: TFrameAdminDataPenerimaanPeserta
     Width = 792
     Height = 323
     Align = alClient
-    Caption = 'panelData'
     ParentBackground = False
     TabOrder = 1
     object cxGrid1: TcxGrid
@@ -273,14 +274,96 @@ object FrameAdminDataPenerimaanPeserta: TFrameAdminDataPenerimaanPeserta
       Height = 321
       Align = alClient
       TabOrder = 0
-      object cxGrid1DBTableView1: TcxGridDBTableView
+      ExplicitLeft = 2
+      ExplicitTop = 6
+      object v_PengajuanPendaftaran: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = DataModule1.d_pendaftaran
         DataController.Summary.DefaultGroupSummaryItems = <>
-        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <
+          item
+            Format = 'jml = ,0.'
+            Kind = skCount
+          end
+          item
+            Format = 'Jml Pendaftar = ,0.'
+            Column = v_PengajuanPendaftaranjumlah_siswa
+          end
+          item
+            Format = 'Jml Pendaftar = ,0.'
+            Kind = skCount
+            Column = v_PengajuanPendaftarannama_sekolah
+          end>
         DataController.Summary.SummaryGroups = <>
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.ColumnAutoWidth = True
+        OptionsView.Footer = True
+        OptionsView.Indicator = True
+        object v_PengajuanPendaftarannama_sekolah: TcxGridDBColumn
+          Caption = 'Sekolah'
+          DataBinding.FieldName = 'nama_sekolah'
+          PropertiesClassName = 'TcxTextEditProperties'
+          Properties.Alignment.Horz = taLeftJustify
+          HeaderAlignmentHorz = taCenter
+          Options.AutoWidthSizable = False
+          Width = 164
+        end
+        object v_PengajuanPendaftaranjumlah_siswa: TcxGridDBColumn
+          Caption = 'Jml Siswa'
+          DataBinding.FieldName = 'jumlah_siswa'
+          PropertiesClassName = 'TcxTextEditProperties'
+          Properties.Alignment.Horz = taCenter
+          HeaderAlignmentHorz = taCenter
+          Width = 72
+        end
+        object v_PengajuanPendaftarannama_departemen: TcxGridDBColumn
+          Caption = 'Departemen'
+          DataBinding.FieldName = 'nama_departemen'
+          HeaderAlignmentHorz = taCenter
+          Width = 158
+        end
+        object v_PengajuanPendaftarannama_progli: TcxGridDBColumn
+          Caption = 'Progli'
+          DataBinding.FieldName = 'nama_progli'
+          HeaderAlignmentHorz = taCenter
+          Width = 158
+        end
+        object v_PengajuanPendaftarannama_pembimbing_e: TcxGridDBColumn
+          Caption = 'Pembimbing Eksternal'
+          DataBinding.FieldName = 'nama_pembimbing_e'
+          HeaderAlignmentHorz = taCenter
+          Width = 97
+        end
+        object v_PengajuanPendaftarantgl_mulai: TcxGridDBColumn
+          Caption = 'Tgl Mulai'
+          DataBinding.FieldName = 'tgl_mulai'
+          PropertiesClassName = 'TcxDateEditProperties'
+          Properties.Alignment.Horz = taCenter
+          Properties.DisplayFormat = 'dd/mm/yyyy'
+          HeaderAlignmentHorz = taCenter
+          Width = 41
+        end
+        object v_PengajuanPendaftarantgl_selesai: TcxGridDBColumn
+          Caption = 'Tgl Selesai'
+          DataBinding.FieldName = 'tgl_selesai'
+          PropertiesClassName = 'TcxDateEditProperties'
+          Properties.Alignment.Horz = taCenter
+          Properties.DisplayFormat = 'dd/mm/yyyy'
+          HeaderAlignmentHorz = taCenter
+          Width = 45
+        end
+        object v_PengajuanPendaftaranstatus: TcxGridDBColumn
+          Caption = 'Status'
+          DataBinding.FieldName = 'status'
+          PropertiesClassName = 'TcxTextEditProperties'
+          Properties.Alignment.Horz = taCenter
+          HeaderAlignmentHorz = taCenter
+          Width = 41
+        end
       end
       object cxGrid1Level1: TcxGridLevel
-        GridView = cxGrid1DBTableView1
+        GridView = v_PengajuanPendaftaran
       end
     end
   end

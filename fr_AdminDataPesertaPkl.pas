@@ -25,12 +25,13 @@ uses
   cxData, cxDataStorage, cxNavigator, dxDateRanges, Data.DB, cxDBData,
   Vcl.StdCtrls, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, SharedFunctions, cxTextEdit,
-  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
+  dm_desktopPklMagang, cxCalendar, f_ref, cxDBExtLookupComboBox;
 
 type
   TFrameAdminDataPesertaPkl = class(TFrame)
     labelDataPesertaPkl: TcxLabel;
-    cxGrid1DBTableView1: TcxGridDBTableView;
+    v_DataPesertaPkl: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
     panelTop: TPanel;
@@ -50,7 +51,19 @@ type
     panelJumlahPeserta: TPanel;
     labelJumlahPeserta: TcxLabel;
     labeljmlPeserta: TcxLabel;
-    lookUpCmbxDepartemen: TcxLookupComboBox;
+    v_DataPesertaPklnisn: TcxGridDBColumn;
+    v_DataPesertaPklnama: TcxGridDBColumn;
+    v_DataPesertaPkltempat_lahir: TcxGridDBColumn;
+    v_DataPesertaPkltanggal_lahir: TcxGridDBColumn;
+    v_DataPesertaPklkelas: TcxGridDBColumn;
+    v_DataPesertaPklnama_sekolah: TcxGridDBColumn;
+    v_DataPesertaPklagama: TcxGridDBColumn;
+    v_DataPesertaPklalamat_rumah: TcxGridDBColumn;
+    v_DataPesertaPklno_hp: TcxGridDBColumn;
+    v_DataPesertaPklstatus: TcxGridDBColumn;
+    cxStyleRepository1: TcxStyleRepository;
+    stl_myBold: TcxStyle;
+    cxExtLookupComboBox1: TcxExtLookupComboBox;
   private
     { Private declarations }
   public

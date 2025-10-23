@@ -7,9 +7,13 @@ uses
 
 type
   TDataModule1 = class(TDataModule)
-    MyConnection1: TMyConnection;
-    MyQuery1: TMyQuery;
-    MyDataSource1: TMyDataSource;
+    MyConnection: TMyConnection;
+    q_siswa: TMyQuery;
+    d_siswa: TMyDataSource;
+    q_pendaftaran: TMyQuery;
+    d_pendaftaran: TMyDataSource;
+    q_refDepartemen: TMyQuery;
+    d_refDepartemen: TMyDataSource;
   private
     { Private declarations }
   public

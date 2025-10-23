@@ -25,14 +25,12 @@ uses
   cxData, cxDataStorage, cxNavigator, dxDateRanges, Data.DB, cxDBData,
   Vcl.StdCtrls, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, SharedFunctions, cxTextEdit,
-  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox;
+  cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
+   dm_desktopPklMagang, cxCalendar;
 
 type
   TFrameAdminDataPenerimaanPeserta = class(TFrame)
     labelDataPesertaPkl: TcxLabel;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1Level1: TcxGridLevel;
-    cxGrid1: TcxGrid;
     panelTop: TPanel;
     panelData: TPanel;
     panelCKapasitasPeserta: TPanel;
@@ -51,6 +49,17 @@ type
     labelJumlahPeserta: TcxLabel;
     labeljmlPeserta: TcxLabel;
     lookUpCmbxDepartemen: TcxLookupComboBox;
+    v_PengajuanPendaftaran: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    v_PengajuanPendaftarannama_sekolah: TcxGridDBColumn;
+    v_PengajuanPendaftaranjumlah_siswa: TcxGridDBColumn;
+    v_PengajuanPendaftarannama_departemen: TcxGridDBColumn;
+    v_PengajuanPendaftarannama_progli: TcxGridDBColumn;
+    v_PengajuanPendaftarannama_pembimbing_e: TcxGridDBColumn;
+    v_PengajuanPendaftarantgl_mulai: TcxGridDBColumn;
+    v_PengajuanPendaftarantgl_selesai: TcxGridDBColumn;
+    v_PengajuanPendaftaranstatus: TcxGridDBColumn;
   private
     { Private declarations }
   public
