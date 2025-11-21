@@ -57,17 +57,24 @@ object formAdmin: TformAdmin
         ParentBackground = False
         TabOrder = 0
         object labelSistemPkl: TcxLabel
-          Left = 49
-          Top = 25
+          Left = 41
+          Top = 23
           Caption = 'Sistem PKL'
           ParentFont = False
+          ParentShowHint = False
+          ShowHint = False
           Style.Font.Charset = DEFAULT_CHARSET
-          Style.Font.Color = clInfoBk
-          Style.Font.Height = -24
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -27
           Style.Font.Name = 'Tahoma'
-          Style.Font.Style = [fsBold]
+          Style.Font.Style = []
           Style.HotTrack = False
+          Style.TextColor = clWhite
+          Style.TextStyle = [fsBold]
+          Style.TransparentBorder = True
           Style.IsFontAssigned = True
+          StyleHot.TextColor = clMenu
+          StyleHot.TextStyle = []
           Properties.Alignment.Horz = taCenter
           Properties.Alignment.Vert = taVCenter
           AnchorX = 119
@@ -80,6 +87,7 @@ object formAdmin: TformAdmin
           Height = 40
           BiDiMode = bdLeftToRight
           Caption = 'Penerimaan Peserta'
+          LookAndFeel.NativeStyle = True
           OptionsImage.Glyph.SourceDPI = 96
           OptionsImage.Glyph.Data = {
             89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
@@ -112,6 +120,7 @@ object formAdmin: TformAdmin
           Width = 199
           Height = 40
           Caption = 'Dashboard'
+          LookAndFeel.NativeStyle = True
           OptionsImage.Glyph.SourceDPI = 96
           OptionsImage.Glyph.Data = {
             89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
@@ -132,11 +141,12 @@ object formAdmin: TformAdmin
         end
         object btnDataPeserta: TcxButton
           Left = 16
-          Top = 192
+          Top = 251
           Width = 200
           Height = 40
           BiDiMode = bdLeftToRight
           Caption = 'Data Peserta'
+          LookAndFeel.NativeStyle = True
           OptionsImage.Glyph.SourceDPI = 96
           OptionsImage.Glyph.Data = {
             89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
@@ -165,11 +175,12 @@ object formAdmin: TformAdmin
         end
         object btnDataPemimbing: TcxButton
           Left = 16
-          Top = 248
+          Top = 192
           Width = 200
           Height = 40
           BiDiMode = bdLeftToRight
           Caption = 'Data Pembimbing'
+          LookAndFeel.NativeStyle = True
           OptionsImage.Glyph.SourceDPI = 96
           OptionsImage.Glyph.Data = {
             89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
@@ -469,17 +480,33 @@ object formAdmin: TformAdmin
         end
         object labelNama: TcxLabel
           Left = 55
-          Top = 18
+          Top = 10
           Caption = 'Cihuyyy'
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
-          Style.Font.Color = clHighlightText
+          Style.Font.Color = clWhite
           Style.Font.Height = -16
           Style.Font.Name = 'Tahoma'
           Style.Font.Style = []
+          Style.LookAndFeel.NativeStyle = True
           Style.IsFontAssigned = True
+          StyleDisabled.LookAndFeel.NativeStyle = True
+          StyleFocused.LookAndFeel.NativeStyle = True
+          StyleHot.LookAndFeel.NativeStyle = True
         end
       end
     end
+  end
+  object cxLookAndFeelController1: TcxLookAndFeelController
+    NativeStyle = False
+    SkinName = 'Lilian'
+    Left = 512
+    Top = 24
+  end
+  object dxSkinController1: TdxSkinController
+    NativeStyle = False
+    SkinName = 'Lilian'
+    Left = 505
+    Top = 112
   end
 end

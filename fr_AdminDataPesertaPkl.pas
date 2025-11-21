@@ -1,4 +1,4 @@
-unit fr_AdminDataPesertaPkl;
+﻿unit fr_AdminDataPesertaPkl;
 
 interface
 
@@ -6,27 +6,12 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore,
-  dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee,
-  dxSkinDarkroom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
-  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
-  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
-  dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
-  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
-  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
-  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
-  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
-  dxSkinOffice2016Dark, dxSkinOffice2019Colorful, dxSkinPumpkin, dxSkinSeven,
-  dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus, dxSkinSilver,
-  dxSkinSpringtime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
-  dxSkinTheBezier, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, cxLabel, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter,
+  dxSkinOffice2010Blue, cxLabel, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxNavigator, dxDateRanges, Data.DB, cxDBData,
   Vcl.StdCtrls, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, SharedFunctions, cxTextEdit,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-  dm_desktopPklMagang, cxCalendar, f_ref, cxDBExtLookupComboBox;
+  dm_desktopPklMagang, cxCalendar, f_ref, cxDBExtLookupComboBox, dxSkinLilian;
 
 type
   TFrameAdminDataPesertaPkl = class(TFrame)
@@ -60,18 +45,82 @@ type
     v_DataPesertaPklagama: TcxGridDBColumn;
     v_DataPesertaPklalamat_rumah: TcxGridDBColumn;
     v_DataPesertaPklno_hp: TcxGridDBColumn;
-    v_DataPesertaPklstatus: TcxGridDBColumn;
-    cxStyleRepository1: TcxStyleRepository;
+    cxStyleRepository: TcxStyleRepository;
     stl_myBold: TcxStyle;
-    cxExtLookupComboBox1: TcxExtLookupComboBox;
+    lookUpDepartemen: TcxExtLookupComboBox;
+    v_DataPesertaPklnama_progli: TcxGridDBColumn;
   private
-    { Private declarations }
+    procedure LoadDataSiswa(const idDept: Variant);
   public
-    { Public declarations }
+    constructor Create(AOwner: TComponent); override;
+    procedure lookUpDepartemenEditValueChanged(Sender: TObject);
   end;
 
 implementation
 
 {$R *.dfm}
 
+constructor TFrameAdminDataPesertaPkl.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+
+  // Pastikan event terhubung
+  lookUpDepartemen.Properties.OnEditValueChanged := lookUpDepartemenEditValueChanged;
+
+  // Load data awal tanpa filter
+  LoadDataSiswa(Null);
+
+  // Tampilkan jumlah awal
+  labeljmlPeserta.Caption := IntToStr(DataModule1.q_siswa.RecordCount);
+end;
+
+procedure TFrameAdminDataPesertaPkl.LoadDataSiswa(const idDept: Variant);
+begin
+  with DataModule1.q_siswa do
+  begin
+    Close;
+    SQL.Clear;
+    SQL.Add(
+      'SELECT ' +
+      '  s.nisn, ' +
+      '  s.nama, ' +
+      '  s.tempat_lahir, ' +
+      '  s.tanggal_lahir, ' +
+      '  s.kelas, ' +
+      '  sk.npsn, ' +
+      '  sk.nama AS nama_sekolah, ' +
+      '  s.agama, ' +
+      '  s.alamat_rumah, ' +
+      '  s.no_hp, ' +
+      '  s.status, ' +
+      '  pr.nama_progli ' +
+      'FROM siswa AS s ' +
+      'INNER JOIN pendaftaran AS p ON s.id_pendaftaran = p.id_pendaftaran ' +
+      'INNER JOIN progli AS pr ON p.id_progli = pr.id_progli ' +
+      'INNER JOIN sekolah_smk AS sk ON s.npsn_sekolah = sk.npsn ' +
+      'WHERE s.status = ''diproses'''
+    );
+
+    // pastikan SQL baru ditulis SEBELUM isi parameter
+    if not VarIsNull(idDept) then
+    begin
+      SQL.Add('AND p.id_departemen = :id_departemen');
+      Params.ParamByName('id_departemen').Value := idDept;
+    end;
+
+    Open;
+  end;
+
+  labeljmlPeserta.Caption := IntToStr(DataModule1.q_siswa.RecordCount);
+end;
+
+procedure TFrameAdminDataPesertaPkl.lookUpDepartemenEditValueChanged(Sender: TObject);
+var
+  idDept: Variant;
+begin
+  idDept := lookUpDepartemen.EditValue;
+  LoadDataSiswa(idDept);
+end;
+
 end.
+

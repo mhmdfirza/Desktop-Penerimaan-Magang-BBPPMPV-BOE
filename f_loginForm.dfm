@@ -21,9 +21,6 @@ object loginForm: TloginForm
     Align = alClient
     TabOrder = 0
     Properties.CustomButtons.Buttons = <>
-    ExplicitTop = 8
-    ExplicitWidth = 466
-    ExplicitHeight = 228
     ClientRectBottom = 197
     ClientRectLeft = 4
     ClientRectRight = 456

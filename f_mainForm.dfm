@@ -1,11 +1,11 @@
 object mainForm: TmainForm
   AlignWithMargins = True
   Left = 0
-  Top = 0
+  Top = 55
   ActiveControl = mf_cxPageControl
   Caption = 'mainForm'
-  ClientHeight = 542
-  ClientWidth = 869
+  ClientHeight = 400
+  ClientWidth = 712
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,27 +13,31 @@ object mainForm: TmainForm
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poScreenCenter
+  Position = poDesigned
   WindowState = wsMinimized
   PixelsPerInch = 96
   TextHeight = 13
   object mf_cxPageControl: TcxPageControl
     Left = 241
     Top = 0
-    Width = 628
-    Height = 542
+    Width = 471
+    Height = 400
     Align = alClient
     TabOrder = 0
-    Properties.ActivePage = beforeLogin
+    Properties.ActivePage = afterLogin
     Properties.CustomButtons.Buttons = <>
-    ClientRectBottom = 538
+    ClientRectBottom = 396
     ClientRectLeft = 4
-    ClientRectRight = 624
+    ClientRectRight = 467
     ClientRectTop = 4
     object beforeLogin: TcxTabSheet
       Caption = 'beforeLogin'
       ImageIndex = 0
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 620
+      ExplicitHeight = 534
       object StaticText4: TStaticText
         Left = 32
         Top = 32
@@ -129,11 +133,11 @@ object mainForm: TmainForm
     Left = 0
     Top = 0
     Width = 241
-    Height = 542
+    Height = 400
     Align = alLeft
     TabOrder = 1
     Properties.CustomButtons.Buttons = <>
-    ClientRectBottom = 538
+    ClientRectBottom = 396
     ClientRectLeft = 4
     ClientRectRight = 237
     ClientRectTop = 4
@@ -152,7 +156,7 @@ object mainForm: TmainForm
     end
     object StatusBar1: TStatusBar
       Left = 4
-      Top = 519
+      Top = 377
       Width = 233
       Height = 19
       Panels = <>

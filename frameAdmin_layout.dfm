@@ -1,7 +1,7 @@
-object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
+object FrameLayout: TFrameLayout
   Left = 0
   Top = 0
-  Width = 1096
+  Width = 792
   Height = 548
   Align = alClient
   Font.Charset = DEFAULT_CHARSET
@@ -14,18 +14,20 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
   object panelTop: TPanel
     Left = 0
     Top = 0
-    Width = 1096
-    Height = 225
+    Width = 792
+    Height = 201
     Align = alTop
     Anchors = []
     ParentBackground = False
     TabOrder = 0
     DesignSize = (
-      1096
-      225)
+      792
+      201)
     object labelDataPesertaPkl: TcxLabel
-      Left = 24
-      Top = 23
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Align = alTop
       Caption = 'DATA PESERTA PKL'
       ParentFont = False
       Style.Font.Charset = DEFAULT_CHARSET
@@ -34,36 +36,46 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
       Style.Font.Name = 'Tahoma'
       Style.Font.Style = [fsBold]
       Style.IsFontAssigned = True
-      Properties.Alignment.Horz = taLeftJustify
+      Properties.Alignment.Horz = taCenter
       Properties.Alignment.Vert = taVCenter
-      AnchorY = 40
+      AnchorX = 396
+      AnchorY = 21
     end
-    object panelCKapasitasPeserta: TPanel
-      AlignWithMargins = True
-      Left = 93
-      Top = 70
+    object labelDataPeserta: TcxLabel
+      Left = 1
+      Top = 167
+      Anchors = []
+      Caption = 'Data Peserta Didik'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -20
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = []
+      Style.IsFontAssigned = True
+    end
+    object panelContainerTotal: TPanel
+      Left = 53
+      Top = 51
       Width = 219
       Height = 110
       Anchors = []
       BevelOuter = bvNone
       Caption = 'panelContainerTotal'
-      TabOrder = 1
-      object Shape3: TShape
+      TabOrder = 2
+      object Shape1: TShape
         Left = 0
         Top = 0
         Width = 219
         Height = 110
-        Align = alClient
         Brush.Color = 13142897
         Pen.Style = psClear
         Pen.Width = 0
         Shape = stRoundRect
-        ExplicitLeft = 8
-        ExplicitTop = -24
       end
-      object panelKapasitasPeserta: TPanel
-        Left = 8
-        Top = 19
+      object panelTotal: TPanel
+        Left = 11
+        Top = 8
         Width = 200
         Height = 95
         BevelOuter = bvNone
@@ -80,11 +92,11 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        object labelKapasitasPeserta: TcxLabel
+        object labelTotal: TcxLabel
           Left = 2
           Top = 2
           Align = alTop
-          Caption = 'Kapasitas Peserta'
+          Caption = 'Total Kapasitas Slot'
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
@@ -93,7 +105,7 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
           Style.Font.Style = []
           Style.IsFontAssigned = True
         end
-        object labelJmlKapasitasPeserta: TcxLabel
+        object labelJmlKapasitas: TcxLabel
           Left = 2
           Top = 41
           Align = alBottom
@@ -106,84 +118,13 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
           Style.Font.Style = []
           Style.TextStyle = [fsBold]
           Style.IsFontAssigned = True
+          ExplicitTop = 72
         end
       end
     end
-    object panelCKapasitasTersisa: TPanel
-      AlignWithMargins = True
-      Left = 752
-      Top = 70
-      Width = 219
-      Height = 110
-      Anchors = []
-      BevelOuter = bvNone
-      Caption = 'panelContainerTotal'
-      TabOrder = 2
-      object Shape1: TShape
-        Left = 0
-        Top = 0
-        Width = 219
-        Height = 110
-        Align = alClient
-        Brush.Color = 13142897
-        Pen.Style = psClear
-        Pen.Width = 0
-        Shape = stRoundRect
-        ExplicitLeft = -8
-        ExplicitTop = -80
-      end
-      object panelKapasitasTersisa: TPanel
-        Left = 8
-        Top = 11
-        Width = 200
-        Height = 95
-        BevelOuter = bvNone
-        Color = 13142897
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Padding.Left = 2
-        Padding.Top = 2
-        Padding.Right = 2
-        Padding.Bottom = 2
-        ParentBackground = False
-        ParentFont = False
-        TabOrder = 0
-        object labelKapasitasTersisa: TcxLabel
-          Left = 2
-          Top = 2
-          Align = alTop
-          Caption = 'Kapasitas Tersisa'
-          ParentFont = False
-          Style.Font.Charset = DEFAULT_CHARSET
-          Style.Font.Color = clWindowText
-          Style.Font.Height = -16
-          Style.Font.Name = 'Tahoma'
-          Style.Font.Style = []
-          Style.IsFontAssigned = True
-        end
-        object labelJmlKapasitasTersisa: TcxLabel
-          Left = 2
-          Top = 41
-          Align = alBottom
-          Caption = '10'
-          ParentFont = False
-          Style.Font.Charset = DEFAULT_CHARSET
-          Style.Font.Color = clWindowText
-          Style.Font.Height = -40
-          Style.Font.Name = 'Tahoma'
-          Style.Font.Style = []
-          Style.TextStyle = [fsBold]
-          Style.IsFontAssigned = True
-        end
-      end
-    end
-    object panelCJumlahPeserta: TPanel
-      AlignWithMargins = True
-      Left = 420
-      Top = 70
+    object panelContainerTerisi: TPanel
+      Left = 293
+      Top = 51
       Width = 219
       Height = 110
       Anchors = []
@@ -197,14 +138,16 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
         Height = 110
         Align = alClient
         Brush.Color = 13142897
+        Enabled = False
         Pen.Style = psClear
         Pen.Width = 0
         Shape = stRoundRect
-        ExplicitTop = -32
+        ExplicitLeft = -23
+        ExplicitTop = 72
       end
-      object panelJumlahPeserta: TPanel
+      object panelTerisi: TPanel
         Left = 8
-        Top = 11
+        Top = 8
         Width = 200
         Height = 95
         BevelOuter = bvNone
@@ -221,11 +164,11 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        object labelJumlahPeserta: TcxLabel
+        object labelTerisi: TcxLabel
           Left = 2
           Top = 2
           Align = alTop
-          Caption = 'Jumlah Peserta'
+          Caption = 'Total Slot Terisi'
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
@@ -234,11 +177,11 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
           Style.Font.Style = []
           Style.IsFontAssigned = True
         end
-        object labeljmlPeserta: TcxLabel
+        object labelJmlTerisi: TcxLabel
           Left = 2
           Top = 41
           Align = alBottom
-          Caption = '1000'
+          Caption = '100'
           ParentFont = False
           Style.Font.Charset = DEFAULT_CHARSET
           Style.Font.Color = clWindowText
@@ -247,24 +190,87 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
           Style.Font.Style = []
           Style.TextStyle = [fsBold]
           Style.IsFontAssigned = True
+          ExplicitTop = 72
         end
       end
     end
-    object lookUpDepartemen: TcxExtLookupComboBox
-      Left = 25
-      Top = 190
-      Properties.View = formRef.v_refDepartemen
-      Properties.KeyFieldNames = 'id_departemen'
-      Properties.ListFieldItem = formRef.v_refDepartemennama_departemen
+    object panelContainerTersisa: TPanel
+      Left = 533
+      Top = 51
+      Width = 219
+      Height = 110
+      Anchors = []
+      BevelOuter = bvNone
+      Caption = 'panelContainerTotal'
       TabOrder = 4
-      Width = 200
+      object Shape3: TShape
+        Left = 0
+        Top = 0
+        Width = 219
+        Height = 110
+        Align = alClient
+        Brush.Color = 13142897
+        Pen.Style = psClear
+        Pen.Width = 0
+        Shape = stRoundRect
+        ExplicitLeft = -80
+        ExplicitTop = 31
+      end
+      object panelTersisa: TPanel
+        Left = 11
+        Top = 8
+        Width = 200
+        Height = 95
+        BevelOuter = bvNone
+        Color = 13142897
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Padding.Left = 2
+        Padding.Top = 2
+        Padding.Right = 2
+        Padding.Bottom = 2
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object labelTersisa: TcxLabel
+          Left = 2
+          Top = 2
+          Align = alTop
+          Caption = 'Total Slot Tersisa'
+          ParentFont = False
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -16
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = []
+          Style.IsFontAssigned = True
+        end
+        object labelJmlTersisa: TcxLabel
+          Left = 2
+          Top = 41
+          Align = alBottom
+          Caption = '100'
+          ParentFont = False
+          Style.Font.Charset = DEFAULT_CHARSET
+          Style.Font.Color = clWindowText
+          Style.Font.Height = -40
+          Style.Font.Name = 'Tahoma'
+          Style.Font.Style = []
+          Style.TextStyle = [fsBold]
+          Style.IsFontAssigned = True
+          ExplicitTop = 72
+        end
+      end
     end
   end
   object panelData: TPanel
     Left = 0
-    Top = 225
-    Width = 1096
-    Height = 323
+    Top = 201
+    Width = 792
+    Height = 347
     Align = alClient
     Caption = 'panelData'
     ParentBackground = False
@@ -272,122 +278,19 @@ object FrameAdminDataPesertaPkl: TFrameAdminDataPesertaPkl
     object cxGrid1: TcxGrid
       Left = 1
       Top = 1
-      Width = 1094
-      Height = 321
+      Width = 790
+      Height = 345
       Align = alClient
       TabOrder = 0
-      object v_DataPesertaPkl: TcxGridDBTableView
+      object cxGrid1DBTableView1: TcxGridDBTableView
         Navigator.Buttons.CustomButtons = <>
-        DataController.DataSource = DataModule1.d_siswa
         DataController.Summary.DefaultGroupSummaryItems = <>
-        DataController.Summary.FooterSummaryItems = <
-          item
-            Format = 'Jml Siswa = ,0.'
-            Kind = skCount
-            Column = v_DataPesertaPklnama
-          end>
+        DataController.Summary.FooterSummaryItems = <>
         DataController.Summary.SummaryGroups = <>
-        OptionsData.Editing = False
-        OptionsData.Inserting = False
-        OptionsView.ColumnAutoWidth = True
-        OptionsView.Footer = True
-        OptionsView.GroupByBox = False
-        OptionsView.Indicator = True
-        object v_DataPesertaPklnisn: TcxGridDBColumn
-          Caption = 'NISN'
-          DataBinding.FieldName = 'nisn'
-          PropertiesClassName = 'TcxTextEditProperties'
-          Properties.Alignment.Horz = taCenter
-          HeaderAlignmentHorz = taCenter
-          Options.AutoWidthSizable = False
-          Styles.Content = stl_myBold
-          Width = 83
-        end
-        object v_DataPesertaPklnama: TcxGridDBColumn
-          Caption = 'Nama Siswa'
-          DataBinding.FieldName = 'nama'
-          PropertiesClassName = 'TcxTextEditProperties'
-          Properties.Alignment.Horz = taLeftJustify
-          HeaderAlignmentHorz = taCenter
-          Options.AutoWidthSizable = False
-          Width = 151
-        end
-        object v_DataPesertaPkltempat_lahir: TcxGridDBColumn
-          Caption = 'Tempat Lahir'
-          DataBinding.FieldName = 'tempat_lahir'
-          HeaderAlignmentHorz = taCenter
-          Options.AutoWidthSizable = False
-          Width = 103
-        end
-        object v_DataPesertaPkltanggal_lahir: TcxGridDBColumn
-          Caption = 'Tgl Lahir'
-          DataBinding.FieldName = 'tanggal_lahir'
-          PropertiesClassName = 'TcxDateEditProperties'
-          Properties.Alignment.Horz = taCenter
-          Properties.DisplayFormat = 'dd/mm/yyyy'
-          HeaderAlignmentHorz = taCenter
-          Options.AutoWidthSizable = False
-          Width = 74
-        end
-        object v_DataPesertaPklkelas: TcxGridDBColumn
-          Caption = 'Kelas'
-          DataBinding.FieldName = 'kelas'
-          PropertiesClassName = 'TcxTextEditProperties'
-          Properties.Alignment.Horz = taCenter
-          HeaderAlignmentHorz = taCenter
-          Options.AutoWidthSizable = False
-          Width = 61
-        end
-        object v_DataPesertaPklnama_sekolah: TcxGridDBColumn
-          Caption = 'Sekolah'
-          DataBinding.FieldName = 'nama_sekolah'
-          HeaderAlignmentHorz = taCenter
-          Options.AutoWidthSizable = False
-          Width = 148
-        end
-        object v_DataPesertaPklagama: TcxGridDBColumn
-          Caption = 'Agama'
-          DataBinding.FieldName = 'agama'
-          HeaderAlignmentHorz = taCenter
-          MinWidth = 80
-          Width = 80
-        end
-        object v_DataPesertaPklalamat_rumah: TcxGridDBColumn
-          Caption = 'Alamat'
-          DataBinding.FieldName = 'alamat_rumah'
-          HeaderAlignmentHorz = taCenter
-          MinWidth = 60
-          Width = 60
-        end
-        object v_DataPesertaPklno_hp: TcxGridDBColumn
-          Caption = 'No Hp'
-          DataBinding.FieldName = 'no_hp'
-          HeaderAlignmentHorz = taCenter
-          Width = 100
-        end
-        object v_DataPesertaPklnama_progli: TcxGridDBColumn
-          Caption = 'Progli'
-          DataBinding.FieldName = 'nama_progli'
-          HeaderAlignmentHorz = taCenter
-          Width = 139
-        end
       end
       object cxGrid1Level1: TcxGridLevel
-        GridView = v_DataPesertaPkl
+        GridView = cxGrid1DBTableView1
       end
-    end
-  end
-  object cxStyleRepository: TcxStyleRepository
-    Left = 8
-    Top = 8
-    PixelsPerInch = 96
-    object stl_myBold: TcxStyle
-      AssignedValues = [svFont]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlue
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
     end
   end
 end

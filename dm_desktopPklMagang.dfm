@@ -25,16 +25,22 @@ object DataModule1: TDataModule1
       '  s.agama,'
       '  s.alamat_rumah,'
       '  s.no_hp,'
-      '  s.status'
+      '  s.status,'
+      '  pr.nama_progli'
       'FROM siswa AS s'
       'INNER JOIN sekolah_smk AS sk'
       '  ON s.npsn_sekolah = sk.npsn'
+      'INNER JOIN pendaftaran AS p'
+      '  ON s.id_pendaftaran = p.id_pendaftaran'
+      'INNER JOIN progli AS pr'
+      '  ON p.id_progli = pr.id_progli'
       'WHERE s.status = '#39'diproses'#39';')
     Active = True
     Left = 104
     Top = 16
   end
   object d_siswa: TMyDataSource
+    AutoEdit = False
     DataSet = q_siswa
     Left = 104
     Top = 64
@@ -65,11 +71,13 @@ object DataModule1: TDataModule1
         'e.id_pembimbing_e'
       'ORDER BY'
       '  p.id_pendaftaran DESC;')
+    ReadOnly = True
     Active = True
     Left = 168
     Top = 16
   end
   object d_pendaftaran: TMyDataSource
+    AutoEdit = False
     DataSet = q_pendaftaran
     Left = 168
     Top = 64
@@ -79,13 +87,67 @@ object DataModule1: TDataModule1
     SQL.Strings = (
       'SELECT id_departemen, nama_departemen FROM departemen')
     Active = True
-    Left = 232
+    Left = 256
     Top = 16
   end
   object d_refDepartemen: TMyDataSource
     AutoEdit = False
     DataSet = q_refDepartemen
-    Left = 232
+    Left = 256
     Top = 64
+  end
+  object q_detailPendaftaran: TMyQuery
+    Connection = MyConnection
+    SQL.Strings = (
+      'SELECT '
+      '    s.id_siswa,'
+      '    s.nisn,'
+      '    s.nama,'
+      '    s.tempat_lahir,'
+      '    s.tanggal_lahir,'
+      '    s.kelas,'
+      '    s.agama,'
+      '    s.alamat_rumah,'
+      '    s.alamat_kos,'
+      '    s.no_hp,'
+      '    s.tgl_mulai,'
+      '    s.tgl_selesai,'
+      '    s.status,'
+      '    s.id_pembimbing_i'
+      'FROM siswa s'
+      'WHERE s.id_pendaftaran = :id_pendaftaran')
+    ReadOnly = True
+    Active = True
+    Left = 168
+    Top = 120
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'id_pendaftaran'
+        Value = nil
+      end>
+  end
+  object d_detailPendaftaran: TMyDataSource
+    DataSet = q_detailPendaftaran
+    Left = 168
+    Top = 168
+  end
+  object q_namaSekolah: TMyQuery
+    Connection = MyConnection
+    SQL.Strings = (
+      'SELECT '
+      '  p.id_pendaftaran,'
+      '  sk.nama AS nama_sekolah'
+      'FROM pendaftaran AS p'
+      'INNER JOIN sekolah_smk AS sk ON p.npsn_sekolah = sk.npsn'
+      'WHERE p.id_pendaftaran = :id')
+    Left = 168
+    Top = 224
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        Value = nil
+      end>
   end
 end

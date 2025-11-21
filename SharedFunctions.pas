@@ -37,7 +37,7 @@ function myReplaceChar_String(Dest, Str: string; SubStr : char): string;
 function FileSizeByName(const FileName: string): Int64;
 function IsFileEksis(namaFolder, namaFile : string) : boolean;
 
-// mengganti karakter en dash (â€“) dengan tanda hubung (-):
+// mengganti karakter en dash (–) dengan tanda hubung (-):
 function ReplaceEnDashWithHyphen(InputString : string) : string;
 
 function HapusEnter(sumber: string): string;
@@ -882,7 +882,7 @@ function ReplaceEnDashWithHyphen(InputString : string) : string;
 begin
   // En dash memiliki kode Unicode #$2013
   // Tanda hubung biasa memiliki kode ASCII #$2D
-  Result := StringReplace(InputString, 'â€“', '-', [rfReplaceAll]);
+  Result := StringReplace(InputString, '–', '-', [rfReplaceAll]);
 end;
 
 

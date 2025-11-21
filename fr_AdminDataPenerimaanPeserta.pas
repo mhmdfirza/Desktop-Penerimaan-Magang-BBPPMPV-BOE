@@ -6,27 +6,13 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit, dxSkinsCore,
-  dxSkinBlack, dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee,
-  dxSkinDarkroom, dxSkinDarkSide, dxSkinDevExpressDarkStyle,
-  dxSkinDevExpressStyle, dxSkinFoggy, dxSkinGlassOceans, dxSkinHighContrast,
-  dxSkinLilian, dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin,
-  dxSkinMetropolis, dxSkinMetropolisDark, dxSkinMoneyTwins,
-  dxSkinOffice2007Black, dxSkinOffice2007Blue, dxSkinOffice2007Green,
-  dxSkinOffice2007Pink, dxSkinOffice2007Silver, dxSkinOffice2010Black,
-  dxSkinOffice2010Blue, dxSkinOffice2010Silver, dxSkinOffice2013DarkGray,
-  dxSkinOffice2013LightGray, dxSkinOffice2013White, dxSkinOffice2016Colorful,
-  dxSkinOffice2016Dark, dxSkinOffice2019Colorful, dxSkinPumpkin, dxSkinSeven,
-  dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus, dxSkinSilver,
-  dxSkinSpringtime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
-  dxSkinTheBezier, dxSkinsDefaultPainters, dxSkinValentine,
-  dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
-  dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, cxLabel, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter,
+  cxLabel, Vcl.ExtCtrls, cxStyles, cxCustomData, cxFilter,
   cxData, cxDataStorage, cxNavigator, dxDateRanges, Data.DB, cxDBData,
   Vcl.StdCtrls, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, SharedFunctions, cxTextEdit,
   cxMaskEdit, cxDropDownEdit, cxLookupEdit, cxDBLookupEdit, cxDBLookupComboBox,
-   dm_desktopPklMagang, cxCalendar;
+  dm_desktopPklMagang, cxCalendar, cxDBExtLookupComboBox, f_ref, Vcl.ComCtrls, dxSkinsForm,
+  dxSkinLilian, frm_PopupDetailPendaftaran;
 
 type
   TFrameAdminDataPenerimaanPeserta = class(TFrame)
@@ -43,12 +29,11 @@ type
     panelKapasitasTersisa: TPanel;
     labelKapasitasTersisa: TcxLabel;
     labelJmlKapasitasTersisa: TcxLabel;
-    panelCJumlahPeserta: TPanel;
+    panelCJumlahPengajuan: TPanel;
     Shape2: TShape;
     panelJumlahPeserta: TPanel;
-    labelJumlahPeserta: TcxLabel;
-    labeljmlPeserta: TcxLabel;
-    lookUpCmbxDepartemen: TcxLookupComboBox;
+    labelJumlahPengajuan: TcxLabel;
+    labeljmlPengajuan: TcxLabel;
     v_PengajuanPendaftaran: TcxGridDBTableView;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
@@ -60,14 +45,108 @@ type
     v_PengajuanPendaftarantgl_mulai: TcxGridDBColumn;
     v_PengajuanPendaftarantgl_selesai: TcxGridDBColumn;
     v_PengajuanPendaftaranstatus: TcxGridDBColumn;
+    lookUpDepartemen: TcxExtLookupComboBox;
+    procedure v_PengajuanPendaftaranCellClick(Sender: TcxCustomGridTableView;
+      ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+      AShift: TShiftState; var AHandled: Boolean);
   private
-    { Private declarations }
+    procedure LoadDataPendaftaran(const idDept: Variant);
   public
-    { Public declarations }
+    constructor Create(AOwner: TComponent); override;
+    procedure lookUpDepartemenEditValueChanged(Sender: TObject);
   end;
 
 implementation
 
 {$R *.dfm}
 
+constructor TFrameAdminDataPenerimaanPeserta.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+
+  // Pastikan event lookup terhubung
+  lookUpDepartemen.Properties.OnEditValueChanged := lookUpDepartemenEditValueChanged;
+
+  // Load data awal tanpa filter (semua departemen)
+  LoadDataPendaftaran(Null);
+
+  // Hitung jumlah awal
+  labeljmlPengajuan.Caption := IntToStr(DataModule1.q_pendaftaran.RecordCount);
+end;
+
+procedure TFrameAdminDataPenerimaanPeserta.LoadDataPendaftaran(const idDept: Variant);
+begin
+  with DataModule1.q_pendaftaran do
+  begin
+    Close;
+    SQL.Clear;
+
+    // Query utama
+    SQL.Add(
+      'SELECT ' +
+      '  p.id_pendaftaran, ' +
+      '  sk.nama AS nama_sekolah, ' +
+      '  p.jumlah_siswa, ' +
+      '  d.nama_departemen, ' +
+      '  pr.nama_progli, ' +
+      '  pe.nama_pembimbing_e, ' +
+      '  p.tgl_mulai, ' +
+      '  p.tgl_selesai, ' +
+      '  p.surat_pengajuan, ' +
+      '  p.status ' +
+      'FROM pendaftaran AS p ' +
+      'INNER JOIN sekolah_smk AS sk ON p.npsn_sekolah = sk.npsn ' +
+      'INNER JOIN departemen AS d ON p.id_departemen = d.id_departemen ' +
+      'INNER JOIN progli AS pr ON p.id_progli = pr.id_progli ' +
+      'INNER JOIN pembimbing_eksternal AS pe ON p.id_pembimbing_e = pe.id_pembimbing_e ' +
+      'WHERE 1=1'  // penting agar mudah menambahkan kondisi dinamis
+    );
+
+    // Tambah filter kalau departemen dipilih
+    if not VarIsNull(idDept) then
+    begin
+      SQL.Add('AND p.id_departemen = :id_departemen');
+      Params.ParamByName('id_departemen').Value := idDept;
+    end;
+
+    SQL.Add('ORDER BY p.id_pendaftaran DESC');
+
+    Open;
+  end;
+
+  // update jumlah data di label
+  labeljmlPengajuan.Caption := IntToStr(DataModule1.q_pendaftaran.RecordCount);
+end;
+
+procedure TFrameAdminDataPenerimaanPeserta.lookUpDepartemenEditValueChanged(Sender: TObject);
+var
+  idDept: Variant;
+begin
+  idDept := lookUpDepartemen.EditValue;
+  LoadDataPendaftaran(idDept);
+end;
+
+
+
+procedure TFrameAdminDataPenerimaanPeserta.v_PengajuanPendaftaranCellClick(
+  Sender: TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
+  AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+var
+  idPend: Integer;
+  f: TfrmPopupDetailPendaftaran;
+begin
+  idPend := TcxGridDBTableView(Sender).DataController.DataSet.FieldByName('id_pendaftaran').AsInteger;
+
+
+  f := TfrmPopupDetailPendaftaran.Create(Self);
+  try
+    f.LoadData(idPend);
+    f.ShowModal;
+  finally
+    f.Free;
+  end;
+end;
+
+
 end.
+

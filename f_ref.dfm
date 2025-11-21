@@ -22,6 +22,7 @@ object formRef: TformRef
     object v_refDepartemen: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       DataController.DataSource = DataModule1.d_refDepartemen
+      DataController.KeyFieldNames = 'id_departemen'
       DataController.Summary.DefaultGroupSummaryItems = <>
       DataController.Summary.FooterSummaryItems = <>
       DataController.Summary.SummaryGroups = <>
@@ -29,8 +30,6 @@ object formRef: TformRef
       OptionsData.Inserting = False
       OptionsView.CellAutoHeight = True
       OptionsView.ColumnAutoWidth = True
-      OptionsView.Footer = True
-      OptionsView.GridLines = glNone
       OptionsView.GroupByBox = False
       OptionsView.HeaderHeight = 25
       Styles.Header = cxStyle1

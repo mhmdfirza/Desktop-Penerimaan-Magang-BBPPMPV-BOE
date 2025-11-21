@@ -14,6 +14,9 @@ type
     d_pendaftaran: TMyDataSource;
     q_refDepartemen: TMyQuery;
     d_refDepartemen: TMyDataSource;
+    q_detailPendaftaran: TMyQuery;
+    d_detailPendaftaran: TMyDataSource;
+    q_namaSekolah: TMyQuery;
   private
     { Private declarations }
   public
